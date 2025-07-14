@@ -5,6 +5,7 @@
 
 using namespace std;
 
+//Structure to represent registers
 struct {
     //Registers to store operands
     int X86_REG_EAX;
@@ -14,6 +15,7 @@ struct {
     int X86_REG_EIP;
 } registers;
 
+//Return binary string from hex input
 string hexToBinary(char hex) {
     switch(hex) {
         case '0':
@@ -55,6 +57,7 @@ string hexToBinary(char hex) {
 }
 
 int main() {
+    //Initialize variables used to keep track of times
     time_t start_time, end_time;
 
     //X86 instructions to be executed
@@ -65,6 +68,7 @@ int main() {
     registers.X86_REG_EBX = 0;
     registers.X86_REG_EIP = 0;
 
+    //Start time of operation
     time(&start_time); 
 
     while (registers.X86_REG_EIP < code.length()) {
@@ -126,9 +130,10 @@ int main() {
         registers.X86_REG_EIP += 15;
     }
     
+    //End time of operation
     time(&end_time);
 
-    // Calculate the difference in seconds
+    //Calculate the difference in seconds
     float time = difftime(end_time, start_time);
 
     cout << start_time  << " seconds" << endl;

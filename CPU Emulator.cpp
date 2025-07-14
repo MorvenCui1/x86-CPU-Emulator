@@ -4,6 +4,7 @@
 
 using namespace std;
 
+//Structure to represent registers
 struct {
     //Registers to store operands
     int X86_REG_EAX;
@@ -13,6 +14,7 @@ struct {
     int X86_REG_EIP;
 } registers;
 
+//Return binary string from hex input
 string hexToBinary(char hex) {
     switch(hex) {
         case '0':

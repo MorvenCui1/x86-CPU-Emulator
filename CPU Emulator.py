@@ -4,11 +4,11 @@ from capstone.x86 import *
 #x86 instructions to run
 code = bytes.fromhex('b8 0A 00 00 00 bb 02 00 00 00 03 c3')
 
-assert code is not None
+assert code is not None #Checks if code is empty at start
 
 cs = Cs(CS_ARCH_X86, CS_MODE_32) #Disassembly engine setup for x86 32-bit
-cs.detail = True
-cs.skipdata = True
+cs.detail = True #Provide detailed information about each instruction
+cs.skipdata = True #Skip over unreadable data
 
 #CPU Registers
 registers = {}
