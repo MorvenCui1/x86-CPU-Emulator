@@ -68,8 +68,8 @@ int getOperand(string hexCode) {
 
     string* binaryString = new string; //Allocate temporary memory for binary string
     *binaryString = ""; //Initialize as empty string to add binary in little endian order from MSB to LSB
-    for (int i = 0; i <= 3; i++) {
-        *binaryString = *binaryString + hexToBinary(hexCode[6 - 2*i]) + hexToBinary(hexCode[7 - 2*i]);
+    for (int i = 0; i < hexCode.length()/2; i++) {
+        *binaryString = *binaryString + hexToBinary(hexCode[hexCode.length() - 2 - 2*i]) + hexToBinary(hexCode[hexCode.length() - 1 - 2*i]);
     }
 
     for (int i = 1; i < (*binaryString).length(); i++) { //Convert two's complement binary to signed integer
@@ -88,7 +88,7 @@ int main() {
     //X86 instructions to be executed
     string code;
     //code = "B801000000BBFFFFFFFF03C3"; //Add 1 and -1
-    code = "E818000000B801000000CD80B8FFFFFFFFC3"; //Branch to subroutine, load -1 into EAX, return, and exit system in linux
+    code = "E918000000B801000000CD80B8FFFFFFFFC3"; //Branch to subroutine, load -1 into EAX, return, and exit system in linux
 
     //Initialize all registers to 0
     registers.X86_REG_EAX = 0;
@@ -235,7 +235,7 @@ int main() {
             registers.X86_REG_EIP += 4; //Sets instruction pointer to next instruction
         }
         //Branch to subroutine address
-        else if (code[registers.X86_REG_EIP] == 'E' && code[registers.X86_REG_EIP + 1] == '8') {
+        else if (code[registers.X86_REG_EIP] == 'E' && code[registers.X86_REG_EIP + 1] == '9') {
             registers.X86_REG_ESP--; //Decrement stack pointer
             stack[registers.X86_REG_ESP] = registers.X86_REG_EIP + 10; //Load next instruction address into stack 
 
